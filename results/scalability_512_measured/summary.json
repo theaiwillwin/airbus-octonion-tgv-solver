@@ -1,0 +1,18 @@
+{
+  "nx": 512,
+  "nt": 1044,
+  "snapshot_interval": 4,
+  "Re": 100.0,
+  "t_final": 0.5,
+  "ranks": [
+    14,
+    29,
+    29
+  ],
+  "memory_dense_mb": 4176.0,
+  "memory_tucker_mb": 0.855804443359375,
+  "compression_ratio": 4879.619441571872,
+  "reconstruction_error": 1.2658798237371773e-15,
+  "collect_time_sec": 631.3464452999979,
+  "decomp_time_sec": 546.2774726999996
+}

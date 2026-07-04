@@ -68,8 +68,10 @@ these ranks still reach machine-precision reconstruction error (1.4e-15).
 - Core register: 14 qubits (unchanged — ranks saturated)
 - **Total: ~54 logical qubits** at nx=256 (measured ranks, 1.4e-15 error)
 
-**nx=512, projected:** ~57 logical qubits (ranks still saturated; only the
-mode-dimension qubits grow by 1 per doubling).
+**nx=512, measured ranks (14, 29, 29), nt=1044:** ~57 logical qubits
+((11+4) + (9+5) + (9+5) factor qubits + 14 core qubits). The guided policy
+independently selected the same saturated ranks at 512², measured at
+4880x compression, 1.3e-15 reconstruction error.
 
 The logarithmic scaling with grid dimension is the core claim: as nx doubles,
 the spatial mode qubit count increases by 1 (⌈log₂(2n)⌉ = ⌈log₂(n)⌉ + 1),

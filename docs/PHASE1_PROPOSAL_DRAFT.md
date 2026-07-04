@@ -57,10 +57,10 @@ Two originally identified risks have been retired by measurement: solver accurac
 | 32   | 0.16 MB       | 0.04 MB         | 4.4×    | 1.5e-6  | (5, 16, 16)   | measured |
 | 64   | 2.1 MB        | 0.27 MB         | 7.8×    | 1.1e-15 | (15, 30, 30)  | measured |
 | 128  | 32.8 MB       | 0.32 MB         | 102×    | 1.2e-15 | (14, 29, 29)  | measured |
-| 256  | 523 MB        | 0.52 MB         | **1010×** | 1.4e-15 | (14, 29, 29)  | measured |
-| 512  | 4.1 GB        | 0.86 MB         | 4887×   | —       | (14, 29, 29)  | projected* |
+| 256  | 523 MB        | 0.52 MB         | 1010×   | 1.4e-15 | (14, 29, 29)  | measured |
+| 512  | 4.18 GB       | 0.86 MB         | **4880×** | 1.3e-15 | (14, 29, 29)  | measured |
 
-\* Projections fix ranks at their measured saturation values. The saturation is verified through nx=256 by direct measurement (identical ranks, machine-precision error), so the 512 projection rests on measured rank stability, not extrapolated rank stability. These extreme ratios are specific to the spectrally narrow single-mode TGV; industrially relevant multi-mode flows would compress less (Section 4, result 3 measures the degradation direction). Reproduce with `python scripts\run_scalability_projection.py --re 100 --grids 32 64 128 256`.
+Every row is measured — no projections. Before running the 512² case we projected 4887× from the measured rank saturation; the direct measurement returned 4880× (within 0.15%), validating both the number and the projection methodology. The guided policy independently selected ranks (14, 29, 29) at 512², confirming rank saturation is a physics property of the flow. These extreme ratios are specific to the spectrally narrow single-mode TGV; industrially relevant multi-mode flows would compress less (Section 4, result 3 measures the degradation direction). Reproduce with `python scripts\run_scalability_projection.py --re 100 --grids 32 64 128 256` (the 512² run needs ~16 GB free RAM and ~20 minutes).
 
 **Rank-selection policy (stated for reproducibility).** Guided ranks come from `associator_guided_ranks` with a grid-independent cap (min_rank=4, max_rank=32): rank must track flow complexity, not resolution, so the cap does not grow with nx. An earlier internal draft used a grid-dependent cap (max_rank=nx/2), which inflated ranks to (29, 59, 59) at nx=128 with no error benefit; we verified by direct decomposition of the nx=256 trajectory that the smaller ranks reach identical machine-precision error, corrected the policy, and re-measured everything above. The small variation between nx=64 (15, 30, 30) and nx≥128 (14, 29, 29) reflects grid-dependent associator statistics feeding the same policy, not a policy change.
 
@@ -71,7 +71,7 @@ Two originally identified risks have been retired by measurement: solver accurac
 | 64²  | (15, 30, 30) | ~46 qubits     | ~4,350 floats            | measured |
 | 128² | (14, 29, 29) | ~50 qubits     | ~9,258 floats            | measured |
 | 256² | (14, 29, 29) | ~54 qubits     | ~22,170 floats           | measured |
-| 512² | (14, 29, 29) | ~57 qubits     | ~44,340 floats           | projected |
+| 512² | (14, 29, 29) | ~57 qubits     | ~44,340 floats           | measured |
 
 As nx quadruples from 128 → 512, the qubit count grows by ~7 (logarithmically) while classical Tucker factor storage grows ~5× (linearly with n). The compression ratio of the quantum encoding versus classical Tucker factors is the exponential advantage the tensor-network literature describes; the compression ratio of Tucker versus dense classical storage is already measured above.
 

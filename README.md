@@ -103,9 +103,10 @@ The Re=10 row's 155× figure is inflated by TGV's single dominant Fourier mode
 at low Reynolds; at nx=64 the conservative claim is **7.8×** at machine
 precision across the industrially relevant Re=100–2000 range. The ratio grows
 rapidly with grid size because guided ranks saturate at (14, 29, 29) from
-nx=128 onward while dense storage grows as O(n³): **measured 102× at nx=128
-and 1010× at nx=256, both at ~1e-15 error**
-(`scripts\run_scalability_projection.py`). The 323× figure for blind
+nx=128 onward while dense storage grows as O(n³): **measured 102× at nx=128,
+1010× at nx=256, and 4880× at nx=512 (4.18 GB → 0.86 MB), all at ~1e-15 error**
+(`scripts\run_scalability_projection.py`; the 512² summary is in
+`results\scalability_512_measured\`). The 323× figure for blind
 fixed-rank at Re=10 is real but misleading as a headline number.
 
 At matched reconstruction error, the associator-guided asymmetric rank
