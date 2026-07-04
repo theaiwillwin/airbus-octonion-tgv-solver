@@ -1,0 +1,9 @@
+{
+  "args": {
+    "re": 100.0,
+    "nx": 64,
+    "t_final": 0.5,
+    "snapshot_interval": 2,
+    "out": null
+  }
+}

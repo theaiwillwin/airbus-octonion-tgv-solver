@@ -110,13 +110,15 @@ nx=128 onward while dense storage grows as O(n³): **measured 102× at nx=128,
 fixed-rank at Re=10 is real but misleading as a headline number.
 
 At matched reconstruction error, the associator-guided asymmetric rank
-allocation uses **1.22× less memory** than the best uniform fixed rank on the
-smooth TGV — rising to **1.73× on a multi-mode perturbed TGV** (10% amplitude
-divergence-free perturbation; 1.67× at 30%). The advantage grows with flow
-complexity, which is the direction that matters for real aerodynamic flows.
-Reproduce with `scripts\run_perturbed_advantage_study.py`. POD/adaptive-SVD
-comparisons are Phase 2 work. Spatial ranks adapt from 19 → 31 (Re=10 → 2000)
-automatically via associator torsion statistics, without manual tuning.
+allocation uses 1.22–1.73× less memory than the best **uniform** fixed rank
+(`scripts\run_perturbed_advantage_study.py`). However, the standard classical
+adaptive baseline — HOSVD singular-value energy truncation — matches or
+slightly beats the associator guidance at matched error with ~13× faster rank
+selection (`scripts\run_svd_baseline_study.py`). **No advantage over standard
+adaptive SVD is claimed**; the associator layer must demonstrate unique value
+in Phase 2 (POD baselines, heterogeneous flows) or be retired. The
+Tucker-vs-dense compression numbers above are independent of the
+rank-selection method and stand either way.
 
 In the time-stepping sweep, the associator-guided method achieves roughly 10%
 lower L2 velocity error than the classical baseline at every Re ≥ 100 — but a
@@ -132,11 +134,12 @@ What this does and does not show:
   6–8× at machine-precision reconstruction error vs dense classical storage,
   implementing the Airbus "Tensor Network within Finite Volume" route. Ranks
   are automatically selected by the associator field.
-- **What the associator adds (preliminary):** guided asymmetric rank allocation
-  outperforms uniform fixed-rank by 1.22× at matched error on smooth TGV and
-  1.67–1.73× on multi-mode perturbed flows — the advantage grows with flow
-  complexity. The CFL steering gain did not survive a constant-CFL control
-  except at Re=100.
+- **What the associator adds (two honest ablations):** guided rank allocation
+  beats uniform fixed-rank (1.22–1.73×) but does not beat standard HOSVD
+  energy truncation at matched error. The CFL steering gain did not survive a
+  constant-CFL control except at Re=100. Neither associator claim is made;
+  the layer is retained as an experimental diagnostic pending Phase 2
+  evidence.
 - **What is NOT claimed:** no quantum hardware speedup. The Re=10 compression
   ratio should not be cited as representative — TGV's spectral simplicity
   flatters all low-rank methods at low Re. The ROM speedup (`rom.py`, ~1.2×)

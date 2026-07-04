@@ -76,12 +76,16 @@ versus the best uniform fixed rank (same trajectories, head-to-head):
 | Perturbed, 30% amplitude | (11, 22, 22) | 16.4× | 5.3e-6 | 1.67× |
 
 The perturbations are divergence-free multi-mode streamfunction fields — a
-physically meaningful "harder" flow. Compression remains substantial as mode
-content grows; the guided policy trades a modest error increase for lower rank. The guided allocation matters *more* as
-the flow gains structure, which is the direction that matters for real
-aerodynamic flows. Ranks also adapt automatically to Reynolds number
-(spatial rank 19 → 31 across Re = 10 – 2000) with no manual tuning.
-This comparison is preliminary: POD and adaptive-SVD baselines are Phase 2 work.
+physically meaningful "harder" flow. The guided allocation beats *uniform*
+ranks by more as the flow gains structure. **However**, we then ran the
+stronger baseline: standard HOSVD energy truncation matches or slightly beats
+the associator guidance (6–11% less memory at equal-or-lower error on the
+perturbed flows, ~13× faster rank selection —
+`scripts/run_svd_baseline_study.py`). We do not claim the associator improves
+on standard adaptive rank selection on this benchmark; its unique value must
+be demonstrated in Phase 2 or the layer will be retired. The compression
+advantage in result 2 is independent of rank-selection method and stands
+either way.
 
 ### 4. CFL steering: an honest ablation, not a claim
 
@@ -115,6 +119,9 @@ derivation and caveats: `QUANTUM_HARDWARE_PATH.md`.
 - No quantum-hardware speedup of any kind.
 - No net CFL-steering advantage (our control experiment partially falsified it;
   reported above as an ablation).
+- No associator advantage over standard adaptive SVD rank selection (our own
+  HOSVD energy-truncation baseline matches or beats it; reported above as a
+  second ablation — the layer must prove unique value in Phase 2 or be retired).
 - No wall-clock ROM speedup (operation-count estimate only; DEIM
   hyper-reduction is Phase 2).
 - No claim that TGV compression ratios transfer unchanged to industrial flows
