@@ -1,0 +1,20 @@
+{
+  "Re": 100.0,
+  "nx": 64,
+  "t_final": 0.5,
+  "n_snapshots": 34,
+  "collect_time_sec": 0.12861319999865373,
+  "decomp_time_sec": 0.19097569999939878,
+  "ranks": {
+    "time": 14,
+    "x": 28,
+    "y": 28
+  },
+  "compression_ratio": 9.262037776004256,
+  "reconstruction_error": 7.559484455761117e-08,
+  "memory_dense_mb": 2.125,
+  "memory_compressed_mb": 0.22943115234375,
+  "ke_error_mean": 0.011141567319454414,
+  "ke_error_max": 0.02049199541450068,
+  "rom_speedup_estimate": 1.2319862878238512
+}

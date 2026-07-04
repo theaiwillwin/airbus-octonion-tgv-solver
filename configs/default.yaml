@@ -1,0 +1,7 @@
+benchmark:
+  Re: 100.0
+  nx: 64
+  ny: 64
+  t_final: 0.5
+  cfl: 0.4
+  method: classical_fv

@@ -1,0 +1,16 @@
+{
+  "args": {
+    "re": 100.0,
+    "nx": 64,
+    "t_final": 0.5,
+    "snapshot_interval": 2,
+    "amplitudes": [
+      0.1,
+      0.3
+    ],
+    "n_modes": 4,
+    "seed": 0,
+    "out": null
+  },
+  "n_flows": 3
+}

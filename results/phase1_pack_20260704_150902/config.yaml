@@ -1,0 +1,16 @@
+cfl: 0.4
+grids:
+- 32
+- 64
+methods:
+- classical_fv
+- fv_plus_associator_diagnostic
+- fv_plus_associator_guided_compression
+reynolds:
+- 10
+- 100
+- 250
+- 500
+- 1000
+- 2000
+t_final: 0.5
